@@ -3,7 +3,7 @@
   "linter-package": true,
   "activationEvents": [],
   "main": "./lib/init",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Atom linter plugin for Puppet, using puppet-lint",
   "repository": {
     "type": "git",

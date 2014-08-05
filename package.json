@@ -4,7 +4,7 @@
   "activationEvents": [],
   "main": "./lib/init",
   "version": "0.1.0",
-  "description": "Atom linter plugin for Puppet, using puppet-lint",
+  "description": "Linter plugin for Puppet, using puppet-lint",
   "repository": {
     "type": "git",
     "url": "https://github.com/eXprojects/linter-puppet-lint"

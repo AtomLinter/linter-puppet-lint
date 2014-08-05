@@ -1,6 +1,6 @@
 # linter-puppet-lint
 
-This package will lint your `.pp` opened filed in Atom through [puppet-lint](http://puppet-lint.com/).
+This package will lint your `.pp` opened files in Atom through [puppet-lint](http://puppet-lint.com/).
 
 ## Installation
 

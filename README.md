@@ -15,3 +15,6 @@ You can configure linter-puppet-lint by editing ~/.atom/config.cson (choose Open
 'linter-puppet-lint':
   'puppetLintExecutablePath': null # puppet-lint path. run 'which puppet-lint' to find the path
 ```
+
+## Donation
+[![Share the love!](https://chewbacco-stuff.s3.amazonaws.com/donate.png)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=KXUYS4ARNHCN8)

@@ -8,7 +8,7 @@ class LinterPuppetLint extends Linter
 
   # A string, list, tuple or callable that returns a string, list or tuple,
   # containing the command line (with arguments) used to lint.
-  cmd: 'puppet-lint --no-autoloader_layout-check'
+  cmd: 'puppet-lint'
 
   executablePath: null
 
@@ -19,6 +19,10 @@ class LinterPuppetLint extends Linter
 
   constructor: (editor) ->
     super(editor)
+
+    args = atom.config.get 'linter-puppet-lint.puppetLintArguments'
+    if args
+      @cmd += " #{args}"
 
     atom.config.observe 'linter-puppet-lint.puppetLintExecutablePath', =>
       @executablePath = atom.config.get 'linter-puppet-lint.puppetLintExecutablePath'

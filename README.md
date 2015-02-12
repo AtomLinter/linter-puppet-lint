@@ -13,6 +13,7 @@ This package will lint your `.pp` opened files in Atom through [puppet-lint](htt
 You can configure linter-puppet-lint by editing ~/.atom/config.cson (choose Open Your Config in Atom menu):
 ```
 'linter-puppet-lint':
+  'puppetLintArguments': '--no-autoloader_layout-check'
   'puppetLintExecutablePath': null # puppet-lint path. run 'which puppet-lint' to find the path
 ```
 

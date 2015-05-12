@@ -20,20 +20,21 @@ class LinterPuppetLint extends Linter
   constructor: (editor) ->
     super(editor)
 
-    atom.config.observe 'linter-puppet-lint.puppetLintArguments', =>
-      @updateCmd()
-
-    atom.config.observe 'linter-puppet-lint.puppetLintExecutablePath', =>
+    @executablePathListener = atom.config.observe 'linter-puppet-lint.puppetLintExecutablePath', =>
       @executablePath = atom.config.get 'linter-puppet-lint.puppetLintExecutablePath'
+
+    @argumentsListener = atom.config.observe 'linter-puppet-lint.puppetLintArguments', =>
+      @updateCmd()
 
   updateCmd: ->
     cmd = @cmd.split ' '
     args = atom.config.get 'linter-puppet-lint.puppetLintArguments'
-    
+
     if args
       @cmd = "#{cmd[0]} #{args}"
 
   destroy: ->
-    atom.config.unobserve 'linter-puppet-lint.puppetLintExecutablePath'
+    @executablePathListener.dispose()
+    @argumentsListener.dispose()
 
 module.exports = LinterPuppetLint

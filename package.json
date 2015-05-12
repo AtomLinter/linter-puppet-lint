@@ -1,7 +1,7 @@
 {
   "name": "linter-puppet-lint",
   "linter-package": true,
-  "activationEvents": [],
+  "activationCommands": {},
   "main": "./lib/init",
   "version": "0.2.8",
   "description": "Linter plugin for Puppet, using puppet-lint",

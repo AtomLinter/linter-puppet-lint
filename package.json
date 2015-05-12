@@ -3,7 +3,7 @@
   "linter-package": true,
   "activationCommands": {},
   "main": "./lib/init",
-  "version": "0.2.8",
+  "version": "0.2.9",
   "description": "Linter plugin for Puppet, using puppet-lint",
   "repository": {
     "type": "git",

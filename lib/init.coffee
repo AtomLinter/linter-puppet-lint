@@ -38,7 +38,6 @@ module.exports =
             stdout: (data) ->
               msg = data
             exit: (code) ->
-              console.log(code)
               if msg is ''
                 return resolve []
               msgA = msg.split('\n').filter (m) -> m isnt ''

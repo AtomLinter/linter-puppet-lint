@@ -30,9 +30,11 @@ module.exports =
       lint: (textEditor) =>
         return new Promise (resolve, reject) =>
           filePath = textEditor.getPath()
-          regex = /(WARNING|ERROR): (.+?) on line (\d+)/
+          regex = /(warning|error): (.+?) on line (\d+) col (\d+)/
           msg = ''
           arg = @args.slice(0)
+          arg.push "--log-format"
+          arg.push "'%{kind}: %{message} on line %{line} col %{column}'"
           arg.push filePath
           process = new BufferedProcess
             command: @executablePath
@@ -49,13 +51,13 @@ module.exports =
                 return resolve []
               msgA = msg.split('\n').filter (m) -> m isnt ''
               resolve msgA.map (err) ->
-                [_, mType, mText, mLine] = err.match regex
-                type: mType.toLowerCase()
+                [_, mType, mText, mLine, mCol] = err.match regex
+                type: mType
                 text: mText
                 filePath: filePath
                 range: [
-                  [parseInt(mLine) - 1, 0],
-                  [parseInt(mLine) - 1, 1]
+                  [parseInt(mLine) - 1, parseInt(mCol) - 1],
+                  [parseInt(mLine) - 1, parseInt(mCol) - 1]
                 ]
 
           process.onWillThrowError ({error, handle}) ->

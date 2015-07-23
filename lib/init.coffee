@@ -40,7 +40,7 @@ module.exports =
             stdout: (data) ->
               msg = data
             exit: (code) ->
-              if code isnt 0
+              if code isnt 0 and code isnt 1
                 atom.notifications.addError "Failed to run #{@executablePath}",
                   detail: "Exit Code: #{code}\n#{msg}"
                   dismissable: true

@@ -7,7 +7,7 @@ module.exports =
       title: 'Puppet Lint Executable Path'
       type: 'string'
     puppetLintArguments:
-      default: [ '--no-autoloader_layout-check' ]
+      default: '--no-autoloader_layout-check'
       title: 'Puppet Lint Arguments'
       type: 'string'
 

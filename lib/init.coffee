@@ -26,7 +26,7 @@ module.exports =
     provider =
       grammarScopes: ['source.puppet']
       scope: 'file'
-      lintOnFly: true
+      lintOnFly: false
       lint: (textEditor) =>
         return new Promise (resolve, reject) =>
           filePath = textEditor.getPath()

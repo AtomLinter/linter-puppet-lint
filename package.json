@@ -12,7 +12,9 @@
   "engines": {
     "atom": ">=1.0.0"
   },
-  "dependencies": {},
+  "dependencies": {
+    "atom-linter": "=3.0.0"
+  },
   "providedServices": {
     "linter": {
       "versions": {

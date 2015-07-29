@@ -1,4 +1,5 @@
-{BufferedProcess, CompositeDisposable} = require 'atom'
+{CompositeDisposable} = require 'atom'
+helpers = require 'atom-linter'
 
 module.exports =
   config:
@@ -12,13 +13,16 @@ module.exports =
       type: 'string'
 
   activate: ->
+    @regex = '(?<type>(warning|error)): (?<message>.+?) on line (?<line>\\d+) col (?<col>\\d+)'
+
     @subscriptions = new CompositeDisposable
     @subscriptions.add atom.config.observe 'linter-puppet-lint.puppetLintExecutablePath',
       (executablePath) =>
         @executablePath = executablePath
     @subscriptions.add atom.config.observe 'linter-puppet-lint.puppetLintArguments',
       (args) =>
-        @args = args.split(' ')
+        @args = [ "--log-format", "'%{kind}: %{message} on line %{line} col %{column}'" ]
+        @args = @args.concat args.split(' ')
   deactivate: ->
     @subscriptions.dispose()
 
@@ -28,41 +32,12 @@ module.exports =
       scope: 'file'
       lintOnFly: false
       lint: (textEditor) =>
-        return new Promise (resolve, reject) =>
-          filePath = textEditor.getPath()
-          regex = /(warning|error): (.+?) on line (\d+) col (\d+)/
-          msg = ''
-          arg = @args.slice(0)
-          arg.push "--log-format"
-          arg.push "'%{kind}: %{message} on line %{line} col %{column}'"
-          arg.push filePath
-          process = new BufferedProcess
-            command: @executablePath
-            args: arg
-            stdout: (data) ->
-              msg = data
-            exit: (code) ->
-              if code isnt 0 and code isnt 1
-                atom.notifications.addError "Failed to run #{@executablePath}",
-                  detail: "Exit Code: #{code}\n#{msg}"
-                  dismissable: true
-                return resolve []
-              if msg is ''
-                return resolve []
-              msgA = msg.split('\n').filter (m) -> m isnt ''
-              resolve msgA.map (err) ->
-                [_, mType, mText, mLine, mCol] = err.match regex
-                type: mType
-                text: mText
-                filePath: filePath
-                range: [
-                  [parseInt(mLine) - 1, parseInt(mCol) - 1],
-                  [parseInt(mLine) - 1, parseInt(mCol) - 1]
-                ]
+        args = @args[..]
+        args.push textEditor.getPath()
 
-          process.onWillThrowError ({error, handle}) ->
-            atom.notifications.addError "Failed to run #{@executablePath}",
-              detail: "#{error.messages}"
-              dismissable: true
-            handle()
-            resolve []
+        helpers.exec(@executablePath, args)
+          .then (val) =>
+            helpers.parse(val, @regex)
+          .catch (val) =>
+            atom.notifications.addError "An error occured running '#{@executablePath}'",
+              detail: val

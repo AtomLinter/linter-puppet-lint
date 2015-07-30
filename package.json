@@ -13,7 +13,7 @@
     "atom": ">=1.0.0"
   },
   "dependencies": {
-    "atom-linter": "=3.0.0"
+    "atom-linter": ">=3.0.0"
   },
   "providedServices": {
     "linter": {

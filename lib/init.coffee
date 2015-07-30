@@ -37,7 +37,8 @@ module.exports =
 
         helpers.exec(@executablePath, args)
           .then (val) =>
-            helpers.parse(val, @regex)
+            return helpers.parse(val, @regex)
           .catch (val) =>
             atom.notifications.addError "An error occured running '#{@executablePath}'",
               detail: val
+            return []

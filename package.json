@@ -1,9 +1,8 @@
 {
   "name": "linter-puppet-lint",
-  "linter-package": true,
   "activationCommands": {},
   "main": "./lib/init",
-  "version": "0.2.9",
+  "version": "0.3.0",
   "description": "Linter plugin for Puppet, using puppet-lint",
   "repository": {
     "type": "git",
@@ -11,7 +10,16 @@
   },
   "license": "MIT",
   "engines": {
-    "atom": ">0.50.0"
+    "atom": ">=1.0.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "atom-linter": ">=3.0.0"
+  },
+  "providedServices": {
+    "linter": {
+      "versions": {
+        "1.0.0": "puppetLinter"
+      }
+    }
+  }
 }

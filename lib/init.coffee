@@ -1,7 +1,10 @@
+{CompositeDisposable} = require 'atom'
+helpers = require 'atom-linter'
+
 module.exports =
   config:
     puppetLintExecutablePath:
-      default: ''
+      default: 'puppet-lint'
       title: 'Puppet Lint Executable Path'
       type: 'string'
     puppetLintArguments:
@@ -10,4 +13,32 @@ module.exports =
       type: 'string'
 
   activate: ->
-    console.log 'activate linter-puppet-lint'
+    @regex = '(?<type>(warning|error)): (?<message>.+?) on line (?<line>\\d+) col (?<col>\\d+)'
+
+    @subscriptions = new CompositeDisposable
+    @subscriptions.add atom.config.observe 'linter-puppet-lint.puppetLintExecutablePath',
+      (executablePath) =>
+        @executablePath = executablePath
+    @subscriptions.add atom.config.observe 'linter-puppet-lint.puppetLintArguments',
+      (args) =>
+        @args = [ "--log-format", "'%{kind}: %{message} on line %{line} col %{column}'" ]
+        @args = @args.concat args.split(' ')
+  deactivate: ->
+    @subscriptions.dispose()
+
+  puppetLinter: ->
+    provider =
+      grammarScopes: ['source.puppet']
+      scope: 'file'
+      lintOnFly: false
+      lint: (textEditor) =>
+        args = @args[..]
+        args.push textEditor.getPath()
+
+        helpers.exec(@executablePath, args)
+          .then (val) =>
+            return helpers.parse(val, @regex, filePath: textEditor.getPath())
+          .catch (val) =>
+            atom.notifications.addError "An error occured running '#{@executablePath}'",
+              detail: val
+            return []

@@ -1,5 +1,4 @@
 {CompositeDisposable} = require 'atom'
-helpers = require 'atom-linter'
 
 module.exports =
   config:
@@ -13,32 +12,42 @@ module.exports =
       type: 'string'
 
   activate: ->
-    @regex = '(?<type>(warning|error)): (?<message>.+?) on line (?<line>\\d+) col (?<col>\\d+)'
-
     @subscriptions = new CompositeDisposable
-    @subscriptions.add atom.config.observe 'linter-puppet-lint.puppetLintExecutablePath',
+    @subscriptions.add atom.config.observe  \
+     'linter-puppet-lint.puppetLintExecutablePath',
       (executablePath) =>
         @executablePath = executablePath
-    @subscriptions.add atom.config.observe 'linter-puppet-lint.puppetLintArguments',
+    @subscriptions.add atom.config.observe \
+     'linter-puppet-lint.puppetLintArguments',
       (args) =>
-        @args = [ "--log-format", "'%{kind}: %{message} on line %{line} col %{column}'" ]
+        @args = [ "--log-format",\
+                  "'%{kind}: %{message} on line %{line} col %{column}'" ]
         @args = @args.concat args.split(' ')
+
   deactivate: ->
     @subscriptions.dispose()
 
   puppetLinter: ->
+    helpers = require 'atom-linter'
     provider =
       grammarScopes: ['source.puppet']
       scope: 'file'
       lintOnFly: false
       lint: (textEditor) =>
+        filePath = textEditor.getPath()
         args = @args[..]
         args.push textEditor.getPath()
-
-        helpers.exec(@executablePath, args)
-          .then (val) =>
-            return helpers.parse(val, @regex, filePath: textEditor.getPath())
-          .catch (val) =>
-            atom.notifications.addError "An error occured running '#{@executablePath}'",
-              detail: val
-            return []
+        return helpers.exec(@executablePath, args).then (output) ->
+          regex = /(warning|error): (.+?) on line (\d+) col (\d+)/g
+          messages = []
+          while((match = regex.exec(output)) isnt null)
+            lineStart = match[3] - 1
+            colStart = match[4] - 1
+            lineEnd = match[3] - 1
+            colEnd = textEditor.getBuffer().lineLengthForRow(lineStart)
+            messages.push
+              type: match[1]
+              filePath: filePath
+              range: [ [lineStart, colStart], [lineEnd, colEnd] ]
+              text: match[2]
+          return messages

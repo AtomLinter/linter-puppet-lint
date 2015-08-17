@@ -34,20 +34,15 @@ module.exports =
       scope: 'file'
       lintOnFly: false
       lint: (textEditor) =>
-        filePath = textEditor.getPath()
         args = @args[..]
         args.push textEditor.getPath()
         return helpers.exec(@executablePath, args).then (output) ->
           regex = /(warning|error): (.+?) on line (\d+) col (\d+)/g
           messages = []
           while((match = regex.exec(output)) isnt null)
-            lineStart = match[3] - 1
-            colStart = match[4] - 1
-            lineEnd = match[3] - 1
-            colEnd = textEditor.getBuffer().lineLengthForRow(lineStart)
             messages.push
               type: match[1]
-              filePath: filePath
-              range: [ [lineStart, colStart], [lineEnd, colEnd] ]
+              filePath: textEditor.getPath()
+              range: helpers.rangeFromLineNumber(textEditor, match[3] - 1, match[4] - 1)
               text: match[2]
           return messages

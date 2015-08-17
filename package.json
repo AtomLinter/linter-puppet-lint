@@ -1,6 +1,5 @@
 {
   "name": "linter-puppet-lint",
-  "linter-package": true,
   "main": "./lib/init",
   "version": "0.3.1",
   "description": "Linter plugin for Puppet, using puppet-lint",

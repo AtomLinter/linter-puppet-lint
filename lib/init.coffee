@@ -10,6 +10,10 @@ module.exports =
       default: '--no-autoloader_layout-check'
       title: 'Puppet Lint Arguments'
       type: 'string'
+    puppetLintOnFly:
+      default: true
+      title: 'Enable lint on fly'
+      type: 'boolean'
 
   activate: ->
     @subscriptions = new CompositeDisposable
@@ -23,6 +27,10 @@ module.exports =
         @args = [ "--log-format",\
                   "'%{kind}: %{message} on line %{line} col %{column}'" ]
         @args = @args.concat args.split(' ')
+    @subscriptions.add atom.config.observe  \
+     'linter-puppet-lint.puppetLintOnFly',
+      (puppetLintOnFly) =>
+        @puppetLintOnFly = puppetLintOnFly
 
   deactivate: ->
     @subscriptions.dispose()
@@ -32,7 +40,7 @@ module.exports =
     provider =
       grammarScopes: ['source.puppet']
       scope: 'file'
-      lintOnFly: true
+      lintOnFly: @puppetLintOnFly
       lint: (textEditor) =>
         console.log(textEditor.buffer.getPath())
         return helpers.tempFile textEditor.buffer.getBaseName(), textEditor.getText(), (tmpFilename) =>

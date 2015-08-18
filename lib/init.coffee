@@ -10,10 +10,6 @@ module.exports =
       default: '--no-autoloader_layout-check'
       title: 'Puppet Lint Arguments'
       type: 'string'
-    puppetLintOnFly:
-      default: true
-      title: 'Enable lint on fly'
-      type: 'boolean'
 
   activate: ->
     @subscriptions = new CompositeDisposable
@@ -27,10 +23,6 @@ module.exports =
         @args = [ "--log-format",\
                   "'%{kind}: %{message} on line %{line} col %{column}'" ]
         @args = @args.concat args.split(' ')
-    @subscriptions.add atom.config.observe  \
-     'linter-puppet-lint.puppetLintOnFly',
-      (puppetLintOnFly) =>
-        @puppetLintOnFly = puppetLintOnFly
 
   deactivate: ->
     @subscriptions.dispose()
@@ -40,16 +32,19 @@ module.exports =
     provider =
       grammarScopes: ['source.puppet']
       scope: 'file'
-      lintOnFly: @puppetLintOnFly
+      lintOnFly: true
       lint: (textEditor) =>
-        console.log(textEditor.buffer.getPath())
         return helpers.tempFile textEditor.buffer.getBaseName(), textEditor.getText(), (tmpFilename) =>
           args = @args[..]
           args.push tmpFilename
-          return helpers.exec(@executablePath, args).then (output) ->
+          return helpers.exec(@executablePath, args, {stream: 'both'}).then (output) ->
+            throw new Error output.stdout if output.stdout.match(/^puppet-lint:/g)
+            throw new Error output.stderr if output.stderr.match(/ambiguous option.*?\(OptionParser::AmbiguousOption\)/)
+            if output.stderr and not output.stdout
+              output.stdout = ['error: ' + output.stderr.split('\n')[0] + ' on line 1 col 1']
             regex = /(warning|error): (.+?) on line (\d+) col (\d+)/g
             messages = []
-            while((match = regex.exec(output)) isnt null)
+            while((match = regex.exec(output.stdout)) isnt null)
               messages.push
                 type: match[1]
                 filePath: textEditor.getPath()

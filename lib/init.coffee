@@ -1,5 +1,4 @@
 {CompositeDisposable} = require 'atom'
-helpers = require 'atom-linter'
 
 module.exports =
   config:
@@ -13,32 +12,42 @@ module.exports =
       type: 'string'
 
   activate: ->
-    @regex = '(?<type>(warning|error)): (?<message>.+?) on line (?<line>\\d+) col (?<col>\\d+)'
-
     @subscriptions = new CompositeDisposable
-    @subscriptions.add atom.config.observe 'linter-puppet-lint.puppetLintExecutablePath',
+    @subscriptions.add atom.config.observe  \
+     'linter-puppet-lint.puppetLintExecutablePath',
       (executablePath) =>
         @executablePath = executablePath
-    @subscriptions.add atom.config.observe 'linter-puppet-lint.puppetLintArguments',
+    @subscriptions.add atom.config.observe \
+     'linter-puppet-lint.puppetLintArguments',
       (args) =>
-        @args = [ "--log-format", "'%{kind}: %{message} on line %{line} col %{column}'" ]
+        @args = [ "--log-format",\
+                  "'%{kind}: %{message} on line %{line} col %{column}'" ]
         @args = @args.concat args.split(' ')
+
   deactivate: ->
     @subscriptions.dispose()
 
   puppetLinter: ->
+    helpers = require 'atom-linter'
     provider =
       grammarScopes: ['source.puppet']
       scope: 'file'
-      lintOnFly: false
+      lintOnFly: true
       lint: (textEditor) =>
-        args = @args[..]
-        args.push textEditor.getPath()
-
-        helpers.exec(@executablePath, args)
-          .then (val) =>
-            return helpers.parse(val, @regex, filePath: textEditor.getPath())
-          .catch (val) =>
-            atom.notifications.addError "An error occured running '#{@executablePath}'",
-              detail: val
-            return []
+        return helpers.tempFile textEditor.buffer.getBaseName(), textEditor.getText(), (tmpFilename) =>
+          args = @args[..]
+          args.push tmpFilename
+          return helpers.exec(@executablePath, args, {stream: 'both'}).then (output) ->
+            throw new Error output.stdout if output.stdout.match(/^puppet-lint:/g)
+            throw new Error output.stderr if output.stderr.match(/ambiguous option.*?\(OptionParser::AmbiguousOption\)/)
+            if output.stderr and not output.stdout
+              output.stdout = ['error: ' + output.stderr.split('\n')[0] + ' on line 1 col 1']
+            regex = /(warning|error): (.+?) on line (\d+) col (\d+)/g
+            messages = []
+            while((match = regex.exec(output.stdout)) isnt null)
+              messages.push
+                type: match[1]
+                filePath: textEditor.getPath()
+                range: helpers.rangeFromLineNumber(textEditor, match[3] - 1, match[4] - 1)
+                text: match[2]
+            return messages

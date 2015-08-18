@@ -32,17 +32,19 @@ module.exports =
     provider =
       grammarScopes: ['source.puppet']
       scope: 'file'
-      lintOnFly: false
+      lintOnFly: true
       lint: (textEditor) =>
-        args = @args[..]
-        args.push textEditor.getPath()
-        return helpers.exec(@executablePath, args).then (output) ->
-          regex = /(warning|error): (.+?) on line (\d+) col (\d+)/g
-          messages = []
-          while((match = regex.exec(output)) isnt null)
-            messages.push
-              type: match[1]
-              filePath: textEditor.getPath()
-              range: helpers.rangeFromLineNumber(textEditor, match[3] - 1, match[4] - 1)
-              text: match[2]
-          return messages
+        console.log(textEditor.buffer.getPath())
+        return helpers.tempFile textEditor.buffer.getBaseName(), textEditor.getText(), (tmpFilename) =>
+          args = @args[..]
+          args.push tmpFilename
+          return helpers.exec(@executablePath, args).then (output) ->
+            regex = /(warning|error): (.+?) on line (\d+) col (\d+)/g
+            messages = []
+            while((match = regex.exec(output)) isnt null)
+              messages.push
+                type: match[1]
+                filePath: textEditor.getPath()
+                range: helpers.rangeFromLineNumber(textEditor, match[3] - 1, match[4] - 1)
+                text: match[2]
+            return messages

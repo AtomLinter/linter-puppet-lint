@@ -1,25 +1,38 @@
 {
   "name": "linter-puppet-lint",
-  "activationCommands": {},
-  "main": "./lib/init",
+  "main": "./lib/main",
   "version": "0.3.0",
-  "description": "Linter plugin for Puppet, using puppet-lint",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/AtomLinter/linter-puppet-lint"
-  },
+  "description": "Lint puppet on save using puppet-lint",
+  "repository": "https://github.com/AtomLinter/linter-puppet-lint",
   "license": "MIT",
   "engines": {
-    "atom": ">=1.0.0"
-  },
-  "dependencies": {
-    "atom-linter": ">=3.0.0"
+    "atom": ">0.180.0"
   },
   "providedServices": {
     "linter": {
       "versions": {
-        "1.0.0": "puppetLinter"
+        "1.0.0": "provideLinter"
       }
+    }
+  },
+  "readmeFilename": "README.md",
+  "dependencies": {
+    "atom-linter": "^3.0.0"
+  },
+  "devDependencies": {
+    "eslint": "latest"
+  },
+  "eslintConfig": {
+    "env": {
+      "es6": true,
+      "browser": true,
+      "node": true
+    },
+    "ecmaFeatures": {
+      "modules": true
+    },
+    "globals": {
+      "atom": true
     }
   }
 }

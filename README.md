@@ -15,6 +15,10 @@ Also the pupet-lint gem must be installed. If your don't have puppet-lint instal
 
 But basically you should do `gem install puppet-lint`
 
+#### Compatibility
+__Since the 0.5.0 version this package is not longer compatible with old versions of puppet-lint__ because we are using now a custom log format with %{line} and %{column} placeholders.
+If you have an old version of puppet-lint installed please follow the instructions of puppet-ling gem installation to ensure that you have the last version of puppet-lint.
+
 ### Plugin installation
 
 * `$ apm install language-puppet` (if you don't have [language-puppet](https://github.com/atom/language-puppet) installed)

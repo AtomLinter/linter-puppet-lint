@@ -2,22 +2,22 @@
 linter-puppet-lint
 =========================
 
-This package provides linter support to your puppet files trough atom-linter using puppet-lint
+This package provides linter support to your puppet files through atom-linter using puppet-lint
 
-It's completly based on linter-ruby https://github.com/AtomLinter/linter-ruby they did the dirty job
+It's completely based on linter-ruby https://github.com/AtomLinter/linter-ruby (they did the dirty job)
 
 ![Preview](http://s16.postimg.org/b84dqyuf9/pup_lin_scrsho.png)
 
 ## Installation
 Linter package must be installed in order to use this plugin. If Linter is not installed, please follow the instructions [here](https://github.com/AtomLinter/Linter).
 
-Also the pupet-lint gem must be installed. If your don't have puppet-lint installed, please follow the instructions [here](http://puppet-lint.com/).
+Also the puppet-lint gem must be installed. If you don't have puppet-lint installed, please follow the instructions [here](http://puppet-lint.com/).
 
 But basically you should do `gem install puppet-lint`
 
 #### Compatibility
-__Since the 0.5.0 version this package is not longer compatible with old versions of puppet-lint__ because we are using now a custom log format with %{line} and %{column} placeholders.
-If you have an old version of puppet-lint installed please follow the instructions of puppet-ling gem installation to ensure that you have the last version of puppet-lint.
+__Since the 0.5.0 version this package is no longer compatible with old versions of puppet-lint__ because we are using now a custom log format with %{line} and %{column} placeholders.
+If you have an old version of puppet-lint installed please follow the instructions for the puppet-lint gem installation to ensure that you have the last version of puppet-lint.
 
 ### Plugin installation
 
@@ -26,7 +26,7 @@ If you have an old version of puppet-lint installed please follow the instructio
 
 ## Settings
 
-You can configure linter-puppet-lint going to the settings menu in atom or by editing ~/.atom/config.cson (choose Open Your Config in Atom menu):
+You can configure linter-puppet-lint by going to the settings menu in atom or by editing ~/.atom/config.cson (choose Open Your Config in Atom menu):
 
 ```
 'linter-puppet-lint':

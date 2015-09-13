@@ -17,8 +17,13 @@
   },
   "readmeFilename": "README.md",
   "dependencies": {
+    "atom-package-deps": "^2.0.3",
     "atom-linter": "^3.0.0"
   },
+
+  "package-deps": [
+    "linter"
+  ],
   "devDependencies": {
     "eslint": "latest"
   },

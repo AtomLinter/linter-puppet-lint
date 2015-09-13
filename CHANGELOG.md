@@ -1,3 +1,8 @@
+
+### 0.6.0
+
+* Install dependencies on activation
+
 ### 0.5.0
 
 * Added support to set the right column number

@@ -9,9 +9,8 @@ It's completely based on linter-ruby https://github.com/AtomLinter/linter-ruby (
 ![Preview](http://s16.postimg.org/b84dqyuf9/pup_lin_scrsho.png)
 
 ## Installation
-Linter package must be installed in order to use this plugin. If Linter is not installed, please follow the instructions [here](https://github.com/AtomLinter/Linter).
 
-Also the puppet-lint gem must be installed. If you don't have puppet-lint installed, please follow the instructions [here](http://puppet-lint.com/).
+The puppet-lint gem must be installed. If you don't have puppet-lint installed, please follow the instructions [here](http://puppet-lint.com/).
 
 But basically you should do `gem install puppet-lint`
 

@@ -29,5 +29,5 @@ You can configure linter-puppet-lint by going to the settings menu in atom or by
 
 ```
 'linter-puppet-lint':
-  'executablePath': /usr/bin/puppet-lint # puppet-lint path.
+  'executablePath': '/usr/bin/puppet-lint' # puppet-lint path.
 ```

@@ -18,7 +18,7 @@
   "readmeFilename": "README.md",
   "dependencies": {
     "atom-package-deps": "^3.0.6",
-    "atom-linter": "^4.2.0"
+    "atom-linter": "^4.3.0"
   },
   "package-deps": [
     "linter"

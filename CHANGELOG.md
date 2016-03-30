@@ -1,5 +1,9 @@
 # Changes
 
+## 0.6.3
+
+*   Fix oldVersion flag being incorrectly set (#51)
+
 ## 0.6.2
 
 *   Update dependencies

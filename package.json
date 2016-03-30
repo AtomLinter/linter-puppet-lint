@@ -6,7 +6,7 @@
   "repository": "https://github.com/AtomLinter/linter-puppet-lint",
   "license": "MIT",
   "engines": {
-    "atom": ">0.180.0"
+    "atom": ">=1.4.0 <2.0.0"
   },
   "providedServices": {
     "linter": {
@@ -24,7 +24,7 @@
     "linter"
   ],
   "devDependencies": {
-    "eslint": "latest"
+    "eslint": "^2.5.3"
   },
   "eslintConfig": {
     "env": {
@@ -32,8 +32,8 @@
       "browser": true,
       "node": true
     },
-    "ecmaFeatures": {
-      "modules": true
+    "parserOptions": {
+      "sourceType": "module"
     },
     "globals": {
       "atom": true

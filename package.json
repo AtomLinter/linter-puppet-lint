@@ -24,7 +24,7 @@
     "linter"
   ],
   "devDependencies": {
-    "eslint": "^2.7.0"
+    "eslint": "^2.10.1"
   },
   "eslintConfig": {
     "env": {

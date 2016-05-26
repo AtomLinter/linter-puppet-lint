@@ -5,6 +5,9 @@
   "description": "Lint puppet on save using puppet-lint",
   "repository": "https://github.com/AtomLinter/linter-puppet-lint",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AtomLinter/linter-puppet-lint/issues"
+  },
   "engines": {
     "atom": ">=1.4.0 <2.0.0"
   },
@@ -21,7 +24,8 @@
     "atom-linter": "^4.6.1"
   },
   "package-deps": [
-    "linter"
+    "linter",
+    "language-puppet"
   ],
   "devDependencies": {
     "eslint": "^2.7.0"

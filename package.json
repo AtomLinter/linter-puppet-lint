@@ -28,7 +28,7 @@
     "language-puppet"
   ],
   "devDependencies": {
-    "eslint": "^2.7.0"
+    "eslint": "^2.11.1"
   },
   "eslintConfig": {
     "env": {

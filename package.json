@@ -1,7 +1,7 @@
 {
   "name": "linter-puppet-lint",
   "main": "./lib/main",
-  "version": "0.6.3",
+  "version": "0.7.0",
   "description": "Lint puppet on save using puppet-lint",
   "repository": "https://github.com/AtomLinter/linter-puppet-lint",
   "license": "MIT",
@@ -9,7 +9,7 @@
     "url": "https://github.com/AtomLinter/linter-puppet-lint/issues"
   },
   "engines": {
-    "atom": ">=1.4.0 <2.0.0"
+    "atom": ">=1.4.0"
   },
   "providedServices": {
     "linter": {
@@ -21,14 +21,14 @@
   "readmeFilename": "README.md",
   "dependencies": {
     "atom-package-deps": "^4.0.1",
-    "atom-linter": "^4.6.1"
+    "atom-linter": "^4.7.0"
   },
   "package-deps": [
     "linter",
     "language-puppet"
   ],
   "devDependencies": {
-    "eslint": "^2.7.0"
+    "eslint": "^2.13.1"
   },
   "eslintConfig": {
     "env": {

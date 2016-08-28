@@ -20,7 +20,7 @@
   },
   "readmeFilename": "README.md",
   "dependencies": {
-    "atom-package-deps": "^4.0.1",
+    "atom-package-deps": "^4.3.1",
     "atom-linter": "^8.0.0"
   },
   "package-deps": [

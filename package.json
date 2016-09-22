@@ -9,7 +9,7 @@
     "url": "https://github.com/AtomLinter/linter-puppet-lint/issues"
   },
   "engines": {
-    "atom": ">=1.4.0"
+    "atom": ">=1.4.0 <2.0.0"
   },
   "providedServices": {
     "linter": {

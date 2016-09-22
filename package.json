@@ -51,5 +51,189 @@
     "globals": {
       "atom": true
     }
+  },
+  "configSchema": {
+    "executablePath": {
+      "title": "Executable path",
+      "type": "string",
+      "description": "Path to puppet-lint executable",
+      "default": "puppet-lint"
+    },
+    "automaticFix": {
+      "title": "Attempt to automatically fix warnings and errors",
+      "type": "boolean",
+      "default": false
+    },
+    "errorLevel": {
+      "title": "Error level",
+      "type": "string",
+      "description": "The level of error to return (warning, error, or all).",
+      "default": "all"
+    },
+    "skipRightToLeftRelationship": {
+      "title": "Skip the right_to_left_relationship check",
+      "type": "boolean",
+      "default": false
+    },
+    "skipAutoloaderLayout": {
+      "title": "Skip the autoloader_layout check",
+      "type": "boolean",
+      "default": false
+    },
+    "skipNamesContainingDash": {
+      "title": "Skip the names_containing_dash check",
+      "type": "boolean",
+      "default": false
+    },
+    "skipClassInherithsFromParamClass": {
+      "title": "Skip the class_inherits_from_params_class check",
+      "type": "boolean",
+      "default": false
+    },
+    "skipParameterOrder": {
+      "title": "Skip the parameter_order check",
+      "type": "boolean",
+      "default": false
+    },
+    "skipInheritsAcrossNamespaces": {
+      "title": "Skip the inherits_across_namespaces check",
+      "type": "boolean",
+      "default": false
+    },
+    "skipNestedClassesOrDefines": {
+      "title": "Skip the nested_classes_or_defines check",
+      "type": "boolean",
+      "default": false
+    },
+    "skipVariableScope": {
+      "title": "Skip the variable_scope check",
+      "type": "boolean",
+      "default": false
+    },
+    "skipSlashComments": {
+      "title": "Skip the slash_comments check",
+      "type": "boolean",
+      "default": false
+    },
+    "skipStarComments": {
+      "title": "Skip the star_comments check",
+      "type": "boolean",
+      "default": false
+    },
+    "skipSelectorInsideResource": {
+      "title": "Skip the selector_inside_resource check",
+      "type": "boolean",
+      "default": false
+    },
+    "skipCaseWithoutDefault": {
+      "title": "Skip the case_without_default check",
+      "type": "boolean",
+      "default": false
+    },
+    "skipDocumentation": {
+      "title": "Skip the documentation check",
+      "type": "boolean",
+      "default": false
+    },
+    "skipDoubleQuotedStrings": {
+      "title": "Skip the double_quoted_strings check",
+      "type": "boolean",
+      "default": false
+    },
+    "skipOnlyVariableString": {
+      "title": "Skip the only_variable_string check",
+      "type": "boolean",
+      "default": false
+    },
+    "skipVariablesNotEnclosed": {
+      "title": "Skip the variables_not_enclosed check",
+      "type": "boolean",
+      "default": false
+    },
+    "skipSingleQuoteStringWithVariables": {
+      "title": "Skip the single_quote_string_with_variables check",
+      "type": "boolean",
+      "default": false
+    },
+    "skipQuotedBooleans": {
+      "title": "Skip the quoted_booleans check",
+      "type": "boolean",
+      "default": false
+    },
+    "skipPuppetUrlWhitoutModules": {
+      "title": "Skip the puppet_url_without_modules check",
+      "type": "boolean",
+      "default": false
+    },
+    "skipVariableContainsDash": {
+      "title": "Skip the variable_contains_dash check",
+      "type": "boolean",
+      "default": false
+    },
+    "skipHardTabs": {
+      "title": "Skip the hard_tabs check",
+      "type": "boolean",
+      "default": false
+    },
+    "skipTrailingWhitespace": {
+      "title": "Skip the trailing_whitespace check",
+      "type": "boolean",
+      "default": false
+    },
+    "skip80Chars": {
+      "title": "Skip the 80chars check (puppet-lint <= 1.1.0)",
+      "type": "boolean",
+      "default": false
+    },
+    "skip140Chars": {
+      "title": "Skip the 140chars check (puppet-lint >= 2.0.0)",
+      "type": "boolean",
+      "default": false
+    },
+    "skip2spSoftTabs": {
+      "title": "Skip the 2sp_soft_tabs check",
+      "type": "boolean",
+      "default": false
+    },
+    "skipArrowAlignment": {
+      "title": "Skip the arrow_alignment check",
+      "type": "boolean",
+      "default": false
+    },
+    "skipUnquotedResourceTitle": {
+      "title": "Skip the unquoted_resource_title check",
+      "type": "boolean",
+      "default": false
+    },
+    "skipEnsureFirstParam": {
+      "title": "Skip the ensure_first_param check",
+      "type": "boolean",
+      "default": false
+    },
+    "skipDuplicateParams": {
+      "title": "Skip the duplicate_params check",
+      "type": "boolean",
+      "default": false
+    },
+    "skipUnquotedFileMode": {
+      "title": "Skip the unquoted_file_mode check",
+      "type": "boolean",
+      "default": false
+    },
+    "skipFileMode": {
+      "title": "Skip the file_mode check",
+      "type": "boolean",
+      "default": false
+    },
+    "skipEnsureNotSymlinkTarget": {
+      "title": "Skip the ensure_not_symlink_target check",
+      "type": "boolean",
+      "default": false
+    },
+    "skipUnquotedNodeName": {
+      "title": "Skip the unquoted_node_name check",
+      "type": "boolean",
+      "default": false
+    }
   }
 }

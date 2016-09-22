@@ -28,16 +28,19 @@
     "language-puppet"
   ],
   "devDependencies": {
-    "eslint": "latest"
+    "eslint": "^3.5.0",
+    "eslint-config-airbnb-base": "^7.1.0",
+    "eslint-plugin-import": "^1.15.0"
   },
   "eslintConfig": {
+    "extends": "airbnb-base",
+    "rules": {
+      "global-require": "off"
+    },
     "env": {
       "es6": true,
       "browser": true,
       "node": true
-    },
-    "parserOptions": {
-      "sourceType": "module"
     },
     "globals": {
       "atom": true

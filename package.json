@@ -41,7 +41,15 @@
   "eslintConfig": {
     "extends": "airbnb-base",
     "rules": {
-      "global-require": "off"
+      "global-require": "off",
+      "import/no-unresolved": [
+        "error",
+        {
+          "ignore": [
+            "atom"
+          ]
+        }
+      ]
     },
     "env": {
       "es6": true,

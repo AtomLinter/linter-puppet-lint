@@ -10,15 +10,15 @@ using puppet-lint.
 The `puppet-lint` gem must be installed. If you don't have puppet-lint
 installed, please follow the instructions [here](http://puppet-lint.com/).
 
-But basically you should do `gem install puppet-lint`
+Basically, you should execute `gem install puppet-lint`.
 
 ### Compatibility
 
 __Since the 0.5.0 version this package is no longer compatible with old
 versions of puppet-lint__ because we are using now a custom log format with
-%{line} and %{column} placeholders. If you have an old version of puppet-lint
-installed please follow the instructions for the puppet-lint gem installation
-to ensure that you have the last version of puppet-lint.
+`%{line}` and `%{column}` placeholders. If you have an old version of puppet-lint
+installed, then please follow the instructions for the puppet-lint gem installation
+to ensure that you have the latest version of puppet-lint.
 
 ### Plugin installation
 

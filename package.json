@@ -38,6 +38,10 @@
     "eslint-config-airbnb-base": "^8.0.0",
     "eslint-plugin-import": "^1.16.0"
   },
+  "scripts": {
+    "test": "apm test",
+    "lint": "eslint ."
+  },
   "eslintConfig": {
     "extends": "airbnb-base",
     "rules": {

@@ -6,7 +6,7 @@ const cleanPath = path.join(__dirname, 'fixtures', 'test_clean.pp');
 const errorsPath = path.join(__dirname, 'fixtures', 'test_errors.pp');
 
 describe('The puppet-lint provider for Linter', () => {
-  const lint = require(path.join('..', 'lib', 'main.js')).provideLinter().lint;
+  const lint = require('../lib/main.js').provideLinter().lint;
 
   beforeEach(() => {
     atom.workspace.destroyActivePaneItem();

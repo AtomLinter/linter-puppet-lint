@@ -1,5 +1,8 @@
 # Changes
 
+## 0.8.1
+* Fix a bug if invalid options were manually set in the Atom config file
+
 ## 0.8.0
 * Added severity attribute
 * Optimized package loading and linting execution times

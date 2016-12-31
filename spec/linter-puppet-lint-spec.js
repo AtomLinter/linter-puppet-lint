@@ -15,7 +15,7 @@ describe('The puppet-lint provider for Linter', () => {
       Promise.all([
         atom.packages.activatePackage('linter-puppet-lint'),
         atom.packages.activatePackage('language-puppet'),
-      ])
+      ]),
     );
   });
 
@@ -23,7 +23,7 @@ describe('The puppet-lint provider for Linter', () => {
     waitsForPromise(() =>
       atom.workspace.open(cleanPath).then(editor => lint(editor)).then((messages) => {
         expect(messages.length).toBe(0);
-      })
+      }),
     );
   });
 
@@ -45,7 +45,7 @@ describe('The puppet-lint provider for Linter', () => {
         expect(messages[1].text).toBe('class not documented');
         expect(messages[1].filePath).toBe(errorsPath);
         expect(messages[1].range).toEqual([[0, 0], [0, 5]]);
-      })
+      }),
     );
   });
 });

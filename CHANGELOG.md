@@ -1,5 +1,10 @@
 # Changes
 
+## 0.8.2
+
+- Fix a bug in how the functions were being declared
+- Update dependencies
+
 ## 0.8.1
 * Fix a bug if invalid options were manually set in the Atom config file
 

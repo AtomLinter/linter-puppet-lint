@@ -1,2 +1,5 @@
 # Auto detect text files and perform LF normalization
 * text eol=lf
+
+# Treat preview image as binary
+*.png binary

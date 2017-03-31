@@ -1,7 +1,6 @@
 # Changes
 
 ## 0.8.2
-
 - Fix a bug in how the functions were being declared
 - Update dependencies
 

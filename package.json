@@ -86,6 +86,11 @@
       "type": "boolean",
       "default": false
     },
+    "skipArrowOnRightOperandLine": {
+      "title": "Skip the arrow_on_right_operand_line check",
+      "type": "boolean",
+      "default": false
+    },
     "skipAutoloaderLayout": {
       "title": "Skip the autoloader_layout check",
       "type": "boolean",

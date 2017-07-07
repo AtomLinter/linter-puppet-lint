@@ -1,13 +1,14 @@
 ### Project specific config ###
+dist: trusty
 language: ruby
 
 matrix:
   include:
     - os: linux
-      rvm: 2.3.1
+      rvm: 2.3.4
 
     - os: linux
-      rvm: 2.3.1
+      rvm: 2.3.4
       env: ATOM_CHANNEL=beta
 
 env:

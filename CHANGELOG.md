@@ -1,5 +1,10 @@
 # Changes
 
+## 0.8.3
+- Uses Linter v2 API.
+- Updated dependencies.
+- Added skip option for ArrowOnRightOperandLine.
+
 ## 0.8.2
 - Fix a bug in how the functions were being declared
 - Update dependencies

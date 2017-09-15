@@ -6,7 +6,7 @@ const cleanPath = path.join(__dirname, 'fixtures', 'test_clean.pp');
 const errorsPath = path.join(__dirname, 'fixtures', 'test_errors.pp');
 
 describe('The puppet-lint provider for Linter', () => {
-  const lint = require('../lib/main.js').provideLinter().lint;
+  const { lint } = require('../lib/main.js').provideLinter();
 
   beforeEach(() => {
     atom.workspace.destroyActivePaneItem();
@@ -15,16 +15,14 @@ describe('The puppet-lint provider for Linter', () => {
       Promise.all([
         atom.packages.activatePackage('linter-puppet-lint'),
         atom.packages.activatePackage('language-puppet'),
-      ]),
-    );
+      ]));
   });
 
   it('finds nothing wrong with a valid file', () => {
     waitsForPromise(() =>
       atom.workspace.open(cleanPath).then(editor => lint(editor)).then((messages) => {
         expect(messages.length).toBe(0);
-      }),
-    );
+      }));
   });
 
   it('handles messages from puppet-lint', () => {
@@ -43,7 +41,6 @@ describe('The puppet-lint provider for Linter', () => {
         expect(messages[1].excerpt).toBe('class not documented');
         expect(messages[1].location.file).toBe(errorsPath);
         expect(messages[1].location.position).toEqual([[0, 0], [0, 5]]);
-      }),
-    );
+      }));
   });
 });

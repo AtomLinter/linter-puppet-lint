@@ -9,7 +9,7 @@ environment:
 
 install:
   - SET PATH=C:\Ruby%RUBY_VERSION%\bin;%PATH%
-  - gem update --system
+  #- gem update --system
   - gem install puppet-lint --no-document
 
 before_build:

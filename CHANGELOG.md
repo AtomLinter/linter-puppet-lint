@@ -1,5 +1,9 @@
 # Changes
 
+## 0.8.4
+- Respect project's `.puppet-lint.rc` configuration.
+- Removed functionless config option.
+
 ## 0.8.3
 - Uses Linter v2 API.
 - Updated dependencies.

@@ -1,7 +1,7 @@
 {
   "name": "linter-puppet-lint",
   "main": "./lib/main.js",
-  "version": "0.8.3",
+  "version": "0.8.4",
   "description": "Lint puppet on save using puppet-lint",
   "repository": "https://github.com/AtomLinter/linter-puppet-lint",
   "license": "MIT",

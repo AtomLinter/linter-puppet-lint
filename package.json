@@ -177,7 +177,7 @@
       "type": "boolean",
       "default": false
     },
-    "skipPuppetUrlWhitoutModules": {
+    "skipPuppetUrlWithoutModules": {
       "title": "Skip the puppet_url_without_modules check",
       "type": "boolean",
       "default": false

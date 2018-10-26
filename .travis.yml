@@ -5,10 +5,10 @@ language: ruby
 matrix:
   include:
     - os: linux
-      rvm: 2.3.4
+      rvm: 2.3.7
 
     - os: linux
-      rvm: 2.3.4
+      rvm: 2.3.7
       env: ATOM_CHANNEL=beta
 
 env:

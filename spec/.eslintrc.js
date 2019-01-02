@@ -9,6 +9,9 @@ module.exports = {
       {
         "devDependencies": true
       }
-    ]
+    ],
+    "object-curly-newline": ["error", {
+      "ImportDeclaration": "never",
+    }]
   }
 };

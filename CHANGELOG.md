@@ -1,4 +1,10 @@
-# Changes
+## 0.9.0
+- Updated Atom dependencies.
+- Fix `skipPuppetUrlWithoutModules` config option.
+- Bump minimum supported `puppet-lint` version to 2.0.0.
+- Future-proof `puppet-lint` output parsing.
+- Change display of `puppet-lint` errors to Atom error notification.
+- Fix false warning thrown for `classname not in autoload module layout`.
 
 ## 0.8.4
 - Respect project's `.puppet-lint.rc` configuration.

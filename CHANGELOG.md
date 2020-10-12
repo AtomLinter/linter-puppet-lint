@@ -1,3 +1,7 @@
+## 0.9.1
+- Correct minimum supported version to 2.1.0.
+- Fix minimum supported version check accuracy.
+
 ## 0.9.0
 - Updated Atom dependencies.
 - Fix `skipPuppetUrlWithoutModules` config option.

@@ -12,7 +12,7 @@ installed, please follow the instructions [here](http://puppet-lint.com/).
 
 Basically, you should execute `gem install puppet-lint` or `bundle install puppet-lint`.
 
-The minimum supported version of `puppet-lint` is 2.0.0.
+The minimum supported version of `puppet-lint` is 2.1.0.
 
 ### Plugin installation
 
